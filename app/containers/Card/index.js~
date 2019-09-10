@@ -1,0 +1,25 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const CardStyle = styled.div`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+  border: 1px solid black;
+  flex:1;
+`;
+
+function Card(props) {
+  return (
+    <CardStyle>
+      {props.content}
+    </CardStyle>
+  );
+}
+
+Card.propTypes = {
+  content: PropTypes.string,
+};
+
+export default Card;

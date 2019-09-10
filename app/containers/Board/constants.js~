@@ -1,0 +1,7 @@
+/*
+ *
+ * Board constants
+ *
+ */
+
+export const SELECT_CARD = 'app/LanguageToggle/SELECT_CARD';

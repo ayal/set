@@ -1,0 +1,27 @@
+- no untoggling card
+- no need for set button - touched it you drive it
+- timer for afer first touch - if not completed set then you loose a point
+- write function that take out cards from deck, use when starting and taking 12 new cards and then after each set
+   - when writing function, make sure to take a card out of the deck, then deck def changes (cant take 2of the same cards out)
+
+ux:
+	- what if there are no sets, if automatically opens more - then it gives out a hint about 9 former cards
+
+- graphics:
+  - board adaptive size?
+  - shapes adaptive size?
+
+- log for all game actions
+
+- game logic
+   - card pemutations
+- shapes
+
+
+future:
+- work for mobile / touch
+- online two players
+   - - ux for when other player is doing a set
+- react native
+
+

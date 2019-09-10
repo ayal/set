@@ -1,0 +1,26 @@
+/*
+ *
+ * Board actions
+ *
+ */
+
+import { SELECT_CARD, SOLVE_BOARD } from './constants';
+
+export function selectCard(selectedCard) {
+
+  console.log('select card action?', selectedCard);
+  
+  return {
+    type: SELECT_CARD,
+    selectedCard,
+  };
+}
+
+
+export function solveBoard() {
+  console.log('solve board action?');
+  
+  return {
+    type: SOLVE_BOARD
+  };
+}

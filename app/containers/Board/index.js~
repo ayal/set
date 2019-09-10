@@ -1,0 +1,35 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+
+import { makeSelectBoard } from './selectors';
+
+const BoardStyle = styled.div`
+  font-size: 1.5em;
+  color: palevioletred;
+  border: 1px solid black;
+  display:flex;
+`;
+
+function Board(props) {
+  return (
+    <BoardStyle>
+      {props.children}
+    </BoardStyle>
+  );
+}
+
+const mapStateToProps = createSelector(
+  makeSelectBoard(),
+  selectedCard => ({
+    selectedCard,
+  }),
+);
+
+export default connect(mapStateToProps)(Board);
+
+
+export default Board;

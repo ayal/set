@@ -39,21 +39,30 @@ function Diamond(props) {
     fill = `url(#horizontal-stripe-${theuuid}`;
   }
 
+  const sqw = 50;
+  const sqh = 100;
+  const sqx = 200;
+  const sqy = 0;
+
 
   for (let i = 0; i < props.number; i++) {
-    let rh = props.pdims.height * 0.6;
-    let rw = props.pdims.width * 0.2;
+    let scale = props.pdims.width / 200;
+
+    let rh = sqh * scale;
+    let rw = sqw * scale;
+
+    let centery = props.pdims.height / 2 - rh / 2 - sqy*scale;
+    let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw * 1.2) - sqx*scale;
+
+    console.log('diamond', centerx, centery);
     
-    let centery = props.pdims.height / 2 - rh / 2 - 5;
-    let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw + 20) - 200;
-    
-    diamonds.push(
+    centerx && centery && diamonds.push(
       <polygon key={`ri${i}`}
 	       x={centerx}
 	       y={centery}
 	       points="0,25, 50,0, 100,25, 50,50"
 	       stroke={props.color} fill={fill} strokeWidth="3"
-	       transform={`rotate(90) translate(${centery},${centerx})`}/>
+	       transform={`rotate(90) translate(${centery},${centerx}) scale(${scale})`}/>
     ); 
   }
   return (

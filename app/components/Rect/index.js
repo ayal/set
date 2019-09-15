@@ -39,17 +39,21 @@ function Rect(props) {
   }
 
   for (let i = 0; i < props.number; i++) {
+    let scale = props.pdims.width / 200;
+    
     let rh = props.pdims.height * 0.6;
     let rw = props.pdims.width * 0.2;
     
     let centery = props.pdims.height / 2 - rh / 2;
     let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw + 10);
+
+    console.log('rect', centerx, centery);
     
     centerx &&  centery && rects.push(
       <rect key={`ri${i}`}
 	    x={centerx}
 	    y={centery}
-	    rx="20" ry="20" height="60%" width="20%" stroke={props.color} fill={fill} strokeWidth="3" />
+	    rx={`${20 * scale }`} ry={`${20 * scale}`} height="60%" width="20%" stroke={props.color} fill={fill} strokeWidth="1.4" />
     ); 
   }
   

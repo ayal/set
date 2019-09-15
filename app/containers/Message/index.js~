@@ -1,43 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+import { createSelector } from 'reselect';
+import { makeSelectMessage } from './selectors';
 
 import { useState, useEffect, useRef } from 'react';
 
-const CardStyle = styled.div`
-  cursor:pointer;
-  font-size: 1em;
-  text-align: center;
-
-
-  user-select: none;
-
-  display:flex;
-  margin:5px;
-
-  width: 32%;
-  flex: 0 1 30%;
-  margin-bottom: 2%; /* (100-32*3)/2 */
-  position: relative;
-
-
+const MessageStyle = styled.h2`
+width:100%;
+display:flex;
+flex:1;
+height:100px;
 `;
 
-const RealCardStyle = styled.div`
-  flex:1;
-  width:100%;
-  height:100%;
-  max-width: 200px;
-  max-height: 150px;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  border: 1px solid black;
-  border-radius:5px;
-  border-color: ${props => props.isSelected ? "palevioletred" : "black"};
+const RealMessageStyle = styled.div`
+width:100%;
+display:flex;
+flex:1;
+height:100px;
 `;
 
-function Card(props) {
+function Message(props) {
   const [dims, setDims] = useState(0);
   const ref = useRef();
 
@@ -59,19 +43,25 @@ function Card(props) {
 
   
   return (
-    <CardStyle isSelected={props.isSelected} onClick={e=>props.onToggle(e, props.index)}>
-      <RealCardStyle ref={ref} isSelected={props.isSelected} >
-	{children}
-      </RealCardStyle>
-    </CardStyle>
+    <MessageStyle isSelected={props.isSelected} onClick={e=>props.onToggle(e, props.index)}>
+      <RealMessageStyle ref={ref} isSelected={props.isSelected} >
+	{props.message}
+      </RealMessageStyle>
+    </MessageStyle>
   );
 }
 
-Card.propTypes = {
-  onToggle: PropTypes.func,
-  isSelected: PropTypes.bool,  
-  content: PropTypes.string,
-  index: PropTypes.number,
+Message.propTypes = {
+  message:PropTypes.string
 };
 
-export default Card;
+const mapStateToProps = createSelector(
+  makeSelectMessage(),
+  message => ({
+    message
+  }),
+);
+
+const withConnect = connect(mapStateToProps);
+
+export default withConnect(Message);

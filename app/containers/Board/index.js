@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -22,8 +24,9 @@ import Squiggle from 'components/Squiggle';
 
 
 const BoardStyle = styled.div`
-  width:100%;
-  height:100%;
+  width:70vw;
+  height:50vh;
+
   flex-wrap: wrap;
   justify-content: space-between;
 
@@ -33,6 +36,7 @@ const BoardStyle = styled.div`
   display:flex;
   padding:20px;
 `;
+
 
 function Board(props) {
   console.log('rendering board', props);

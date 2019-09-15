@@ -10,6 +10,7 @@ import { useState, useEffect, useRef } from 'react';
 const MessageStyle = styled.h2`
 width:100%;
 display:flex;
+text-align:center;
 flex:1;
 height:100px;
 `;
@@ -17,8 +18,14 @@ height:100px;
 const RealMessageStyle = styled.div`
 width:100%;
 display:flex;
+text-align:center;
 flex:1;
 height:100px;
+justify-content:center;
+align-items:center;
+background:black;
+color:orange;
+text-transform:uppercase;
 `;
 
 function Message(props) {

@@ -8,6 +8,29 @@ import Rect from 'components/Rect';
 import Diamond from 'components/Diamond';
 import Squiggle from 'components/Squiggle';
 
+function useWindowDims() {
+
+  const [dims, setDims] = useState(0);
+  const ref = useRef();
+
+  useEffect(() => {
+    const handleResize = () => {
+      let newdims = ref.current.getBoundingClientRect();
+      if (newdims.width !== dims.width) {
+	setDims(newdims);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+
+  return {dims,ref};
+}
+
+
 
 const CardStyle = styled.div`
   cursor:pointer;
@@ -22,39 +45,25 @@ const CardStyle = styled.div`
 
   width: 32%;
   flex: 0 1 30%;
-  margin-bottom: 2%; /* (100-32*3)/2 */
   position: relative;
 
 
 `;
 
+const CW = 5;
+
 const RealCardStyle = styled.div`
   flex:1;
-  width:100%;
-  height:100%;
-  max-width: 200px;
-  max-height: 150px;
   align-items: center;
   justify-content: center;
   position: relative;
   border: 1px solid black;
   border-radius:5px;
   border-color: ${props => props.isSelected ? "palevioletred" : "black"};
+  height:${props => props.dims.width * 130 / 200}px;
 `;
 
 function Card(props) {
-  const [dims, setDims] = useState(0);
-  const ref = useRef();
-
-  useEffect(() => {
-    if (ref  && ref.current) {
-      let rect = ref.current.getBoundingClientRect();
-      if (dims.toString() !== rect.toString()) {
-	 setDims(ref.current.getBoundingClientRect());
-      }
-    }
-  });
-
   const Shape = props.shape;
   
   const components = {
@@ -62,7 +71,8 @@ function Card(props) {
     Rect,
     Diamond
   };
-  
+
+  const {dims,ref} = useWindowDims();
   
   let newprops = {
     ...props,
@@ -73,7 +83,7 @@ function Card(props) {
   
   return (
     <CardStyle isSelected={props.isSelected} onClick={e=>props.onToggle(e, {...props})}>
-      <RealCardStyle ref={ref} isSelected={props.isSelected} >
+      <RealCardStyle ref={ref} isSelected={props.isSelected} dims={dims} >
 	<ShapeComponent {...newprops} />
       </RealCardStyle>
     </CardStyle>

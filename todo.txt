@@ -4,6 +4,11 @@
 - write function that take out cards from deck, use when starting and taking 12 new cards and then after each set
    - when writing function, make sure to take a card out of the deck, then deck def changes (cant take 2of the same cards out)
 
+- can be more cards than 12 if dealing more after no set
+   - leave room on the board
+
+- transform / scale card size and shapes on card to fit screen
+
 ux:
 	- what if there are no sets, if automatically opens more - then it gives out a hint about 9 former cards
 

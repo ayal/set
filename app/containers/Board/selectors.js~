@@ -16,7 +16,7 @@ const makeSelectBoard = () =>
     selectBoard,
     boardState => {
       console.log('board state', boardState);
-      return boardState.selectedCards;
+      return boardState;
     },
   );
 

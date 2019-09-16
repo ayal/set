@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
 
 /**
  * Direct selector to the message domain
  */
 
-const selectMessage = state => state.message || initialState;
+const selectMessage = state => {
+  return state.board;
+};
 
 /**
  * Select the language locale

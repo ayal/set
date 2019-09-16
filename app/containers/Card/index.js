@@ -20,8 +20,9 @@ function useWindowDims() {
 	setDims(newdims);
       }
     };
+    
     window.addEventListener('resize', handleResize);
-    handleResize();
+    handleResize();    
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -52,6 +53,11 @@ const CardStyle = styled.div`
 
 const CW = 5;
 
+const wtoh = (w)=> {
+  let h = w * 130 / 200;
+  return h;
+};
+
 const RealCardStyle = styled.div`
   flex:1;
   align-items: center;
@@ -60,7 +66,7 @@ const RealCardStyle = styled.div`
   border: 1px solid black;
   border-radius:5px;
   border-color: ${props => props.isSelected ? "palevioletred" : "black"};
-  height:${props => props.dims.width * 130 / 200}px;
+  height:${props => wtoh(props.dims.width)}px;
 `;
 
 function Card(props) {
@@ -76,14 +82,22 @@ function Card(props) {
   
   let newprops = {
     ...props,
-    pdims:dims
+    pdims:{width: dims.width, height: wtoh(dims.width)}
   };
+
+  let thedims = dims;
+  if (props.fdims) {
+    thedims = props.fdims ;
+    newprops.pdims = props.fdims;
+  }
+
+  
 
   const ShapeComponent = components[Shape];
   
   return (
     <CardStyle isSelected={props.isSelected} onClick={e=>props.onToggle(e, {...props})}>
-      <RealCardStyle ref={ref} isSelected={props.isSelected} dims={dims} >
+      <RealCardStyle ref={ref} isSelected={props.isSelected} dims={thedims} >
 	<ShapeComponent {...newprops} />
       </RealCardStyle>
     </CardStyle>
@@ -95,6 +109,7 @@ Card.propTypes = {
   isSelected: PropTypes.bool,  
   content: PropTypes.string,
   index: PropTypes.number,
+  fdims: PropTypes.object
 };
 
 export default Card;

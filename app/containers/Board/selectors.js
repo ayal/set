@@ -15,7 +15,6 @@ const makeSelectBoard = () =>
   createSelector(
     selectBoard,
     boardState => {
-      console.log('board state', boardState);
       return boardState;
     },
   );

@@ -53,8 +53,6 @@ function Diamond(props) {
 
     let centery = props.pdims.height / 2 - rh / 2 - sqy*scale;
     let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw * 1.2) - sqx*scale;
-
-    console.log('diamond', centerx, centery);
     
     centerx && centery && diamonds.push(
       <polygon key={`ri${i}`}

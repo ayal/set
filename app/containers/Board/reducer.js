@@ -87,11 +87,11 @@ let number = [1,2,3];
 let fills = ['none', 'color', 'striped'];
 
 const alldeck = cartesian(shapes, colors, number, fills);
-const twelveCards = randomCardsOutOfDeck(alldeck, 12);
+const boardCards = randomCardsOutOfDeck(alldeck, 12);
 
 // not including in deck the 12 cards we just took
 let newcards = alldeck.filter(card=>{
-  let iseq = twelveCards.filter(tc=>!cardseq(card, tc));
+  let iseq = boardCards.filter(tc=>!cardseq(card, tc));
   if (iseq.length < 12) {
     return false;
   }
@@ -99,16 +99,14 @@ let newcards = alldeck.filter(card=>{
 });
 
 export const initialState = {
-  message:'hi',
+  messages:['GAME START'],
   selectedCards: {},
   allcards: newcards,
-  twelveCards
+  boardCards
 };
 
 let solveBoard = (action, draft) => {
-  var threes = getAllSubsetsSizeK(draft.twelveCards, 3);
-  console.log('threes', threes);
-
+  var threes = getAllSubsetsSizeK(draft.boardCards, 3);
   let sets = threes.filter(three=>{
     var eqs = 0;
     var neqs = 0;
@@ -130,7 +128,7 @@ let solveBoard = (action, draft) => {
   console.log('sets', JSON.stringify(sets));
   
   if (Object.keys(draft.selectedCards).length === 3) {
-    var threecards = Object.values(draft.selectedCards).map(x=>{delete x.index; delete x.children; return x;});
+    var threecards = Object.values(draft.selectedCards).map(x=>({number: x.number, color: x.color, fill: x.fill, shape: x.shape}));
 
     if ((threecards[0].color === threecards[1].color &&
 	 threecards[1].color === threecards[2].color) ||
@@ -155,7 +153,7 @@ let solveBoard = (action, draft) => {
 
 	    // shape color number fill
 	    let allcards = draft.allcards;
-	    let twelveCards = draft.twelveCards;
+	    let boardCards = draft.boardCards;
 	    
 	    let newcards = allcards.map(card=>{
 	      if (!(cardseq(card, threecards[0]) || cardseq(card, threecards[1]) || cardseq(card, threecards[2]))) {
@@ -163,7 +161,7 @@ let solveBoard = (action, draft) => {
 	      }
 	    }).filter(x=>!!x);
 	    
-	    let newtwelve = twelveCards.map(card=>{
+	    let newboardcards = boardCards.map(card=>{
 	      if (!(cardseq(card, threecards[0]) || cardseq(card, threecards[1]) || cardseq(card, threecards[2]))) {
 		return card;
 	      }
@@ -171,14 +169,13 @@ let solveBoard = (action, draft) => {
 		return randomCardsOutOfDeck(newcards,1)[0];
 	      }
 	    });
-
 	    
-	    return {message: 'YES ITS A SET!', selectedCards: {}, allcards: newcards, twelveCards: newtwelve};
+	    return {messages: [{message: 'YES ITS A SET!', cards: threecards}, ...draft.messages], selectedCards: {}, allcards: newcards, boardCards: newboardcards};
 	  } 	  
 	} 
       } 
     }
-    return {...draft, message: 'not a set', selectedCards: {}};
+    return {...draft, messages: ['not a set', ...draft.messages], selectedCards: {}};
   }
 
   if (Object.keys(draft.selectedCards).filter(x=>!!draft.selectedCards[x]).length < 3) {
@@ -192,24 +189,27 @@ let solveBoard = (action, draft) => {
 /* eslint-disable default-case, no-param-reassign */
 const boardReducer = (state = initialState, action) =>
 	produce(state, draft => {
-
-	  console.log('board reducer', action, draft);
 	  
 	  switch (action.type) {
 
 	  case SELECT_CARD:
+	    if (Object.keys(draft.selectedCards).length === 3) {
+	      return;
+	    }
             draft.selectedCards = {
 	      ...draft.selectedCards,
 	      [action.cardprops.index]: action.cardprops
 	    };
+	    let c = action.cardprops;
+	    draft.messages = [...draft.messages];
             break;
 	    
 	  case SOLVE_BOARD:
 	    var x = solveBoard(action, draft);
             draft.selectedCards = x.selectedCards;
-	    draft.message = x.message;
+	    draft.messages = [...x.messages];
 	    draft.allcards = x.allcards;
-	    draft.twelveCards = x.twelveCards;
+	    draft.boardCards = x.boardCards;
             break;
 	  }
 

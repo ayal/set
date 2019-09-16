@@ -46,8 +46,6 @@ function Rect(props) {
     
     let centery = props.pdims.height / 2 - rh / 2;
     let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw + 10);
-
-    console.log('rect', centerx, centery);
     
     centerx &&  centery && rects.push(
       <rect key={`ri${i}`}

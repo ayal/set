@@ -6,21 +6,22 @@
 
 import { SELECT_CARD, SOLVE_BOARD } from './constants';
 
-export function selectCard(selectedCard) {
+export function selectCard(cardprops) {
 
-  console.log('select card action?', selectedCard);
+  console.log('select card action?', cardprops);
   
   return {
     type: SELECT_CARD,
-    selectedCard,
+    cardprops,
   };
 }
 
 
-export function solveBoard() {
-  console.log('solve board action?');
+export function solveBoard(cardprops) {
+  console.log('solve board action?', cardprops);
   
   return {
-    type: SOLVE_BOARD
+    type: SOLVE_BOARD,
+    cardprops
   };
 }

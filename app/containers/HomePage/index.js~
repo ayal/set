@@ -66,8 +66,8 @@ export function HomePage({
   
   return (
     <div>
-      <Board></Board>
       <Message />
+      <Board></Board>
     </div>
   );
 }

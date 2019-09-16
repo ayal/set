@@ -3,70 +3,107 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import { makeSelectMessage } from './selectors';
+import { makeSelectMessages } from './selectors';
+
+import Card from 'containers/Card';
+
+import _ from 'lodash';
 
 import { useState, useEffect, useRef } from 'react';
 
-const MessageStyle = styled.h2`
+const MessagesStyle = styled.h2`
 width:100%;
 display:flex;
 text-align:center;
 flex:1;
-height:100px;
 `;
 
-const RealMessageStyle = styled.div`
+const RealMessagesStyle = styled.div`
+font-size:10px;
 width:100%;
 display:flex;
 text-align:center;
 flex:1;
-height:100px;
 justify-content:center;
 align-items:center;
-background:black;
-color:orange;
 text-transform:uppercase;
+white-space: pre-wrap;
+display:flex;
+flex:1;
+flex-direction:column;
 `;
 
-function Message(props) {
-  const [dims, setDims] = useState(0);
-  const ref = useRef();
+const MessageStyle = styled.div`
+width:100%;
+display:flex;
+flex-direction:column;
+align-items:center;
+flex:1;
+border-bottom:1px solid #eee;
 
-  useEffect(() => {
-    if (ref  && ref.current) {
-      let rect = ref.current.getBoundingClientRect();
-      if (dims.toString() !== rect.toString()) {
-	 setDims(ref.current.getBoundingClientRect());
-      }
+`;
+
+
+const CardsWrap = styled.div`
+display:flex;
+flex-direction:row;
+width:150px;
+`;
+
+
+
+
+
+function Message(props) {
+  let messagesdom = _.take(props.messages, 5).map((m,i)=>{
+    if (m.cards) {
+      return (
+	<MessageStyle key={`d-${i}`}>
+	<div>{m.message}</div>
+	<CardsWrap> {
+	    m.cards.map((x,idx)=>{
+	      if (x.shape) {
+		x = [x.shape, x.color, x.number, x.fill];
+	      }
+	      
+	      return (
+	
+		  <Card color={x[1]} number={x[2]} fill={x[3]} shape={x[0]}>
+		  </Card>
+
+	      );
+	    })
+	}</CardsWrap></MessageStyle>);
+    }
+    else {
+      return (
+	<MessageStyle>{m}</MessageStyle>
+      );
     }
   });
 
-  const children =  React.Children.map(props.children, (child, idx) => {
-    let newprops = {
-      pdims:dims
-    };
-    return React.cloneElement(child, newprops);
-  });
-
-  
   return (
-    <MessageStyle isSelected={props.isSelected} onClick={e=>props.onToggle(e, props.index)}>
-      <RealMessageStyle ref={ref} isSelected={props.isSelected} >
-	{props.message}
-      </RealMessageStyle>
-    </MessageStyle>
+    <MessagesStyle isSelected={props.isSelected} onClick={e=>props.onToggle(e, props.index)}>
+      <RealMessagesStyle isSelected={props.isSelected} >
+	{`DECK: ${props.allcards.length}\n`}
+	{messagesdom}
+      </RealMessagesStyle>
+    </MessagesStyle>
   );
 }
 
 Message.propTypes = {
-  message:PropTypes.string
+  messages:PropTypes.array,
+  allcards: PropTypes.array
 };
 
 const mapStateToProps = createSelector(
-  makeSelectMessage(),
-  message => ({
-    message
-  }),
+  makeSelectMessages(),
+  ({messages, allcards}) => {
+    return ({
+      messages,
+      allcards
+  })},
 );
 
 const withConnect = connect(mapStateToProps);

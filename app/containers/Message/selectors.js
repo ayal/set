@@ -4,7 +4,7 @@ import { createSelector } from 'reselect';
  * Direct selector to the message domain
  */
 
-const selectMessage = state => {
+const selectMessages = state => {
   return state.board;
 };
 
@@ -12,13 +12,12 @@ const selectMessage = state => {
  * Select the language locale
  */
 
-const makeSelectMessage = () =>
+const makeSelectMessages = () =>
   createSelector(
-    selectMessage,
+    selectMessages,
     boardState => {
-      console.log('board state, message selector', boardState);
-      return boardState.message;
+      return {messages: boardState.messages, allcards: boardState.allcards};
     },
   );
 
-export { selectMessage, makeSelectMessage };
+export { selectMessages, makeSelectMessages };

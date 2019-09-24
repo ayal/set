@@ -1,57 +1,57 @@
 var __wpo = {
   "assets": {
     "main": [
-      "/favicon.ico",
-      "/2f1a976c9c35ffed9b7e23cf2cbf8f19.jpg",
-      "/runtime.b185a91ff62748618b17.js",
-      "/"
+      "/set/favicon.ico",
+      "/set/2f1a976c9c35ffed9b7e23cf2cbf8f19.jpg",
+      "/set/runtime.8fce9d8e3bf21d749999.js",
+      "/set/"
     ],
     "additional": [
-      "/npm.intl.62ffc0b470803cf6ab21.chunk.js",
-      "/npm.lodash.8ef8ac3fc61e6f207a6e.chunk.js",
-      "/npm.redux-saga.79f2323a863254a4c833.chunk.js",
-      "/npm.webpack.118c1f5931a03dd939a1.chunk.js",
-      "/4.97c56abce4bb8a4242ff.chunk.js",
-      "/main.65859f5e1ac5c1744a78.chunk.js",
-      "/npm.babel.cbd622b2e6a0ad546b0f.chunk.js",
-      "/npm.connected-react-router.4c4f072dc44cd33b1292.chunk.js",
-      "/npm.intl-messageformat.ef4553732cb09ea7cdfb.chunk.js",
-      "/npm.intl-relativeformat.1bebde40ba29c84dc892.chunk.js",
-      "/npm.react-app-polyfill.478cb9097f8702465774.chunk.js",
-      "/npm.react-redux.97e3c68cf48d6bcfd845.chunk.js",
-      "/13.932fa265fdb6d9fb7773.chunk.js",
-      "/14.56932054d26e0796dddf.chunk.js",
-      "/15.1f44947bff9bf82d27b3.chunk.js",
-      "/16.8e654ad7d82140fdcf3a.chunk.js"
+      "/set/npm.intl.62ffc0b470803cf6ab21.chunk.js",
+      "/set/npm.lodash.8ef8ac3fc61e6f207a6e.chunk.js",
+      "/set/npm.redux-saga.79f2323a863254a4c833.chunk.js",
+      "/set/npm.webpack.118c1f5931a03dd939a1.chunk.js",
+      "/set/4.97c56abce4bb8a4242ff.chunk.js",
+      "/set/main.d0f016ffefa5359cc3b3.chunk.js",
+      "/set/npm.babel.cbd622b2e6a0ad546b0f.chunk.js",
+      "/set/npm.connected-react-router.4c4f072dc44cd33b1292.chunk.js",
+      "/set/npm.intl-messageformat.ef4553732cb09ea7cdfb.chunk.js",
+      "/set/npm.intl-relativeformat.1bebde40ba29c84dc892.chunk.js",
+      "/set/npm.react-app-polyfill.478cb9097f8702465774.chunk.js",
+      "/set/npm.react-redux.97e3c68cf48d6bcfd845.chunk.js",
+      "/set/13.932fa265fdb6d9fb7773.chunk.js",
+      "/set/14.56932054d26e0796dddf.chunk.js",
+      "/set/15.1f44947bff9bf82d27b3.chunk.js",
+      "/set/16.8e654ad7d82140fdcf3a.chunk.js"
     ],
     "optional": []
   },
   "externals": [],
   "hashesMap": {
-    "5e53ef208f3fa79a48f8374488f473c76e1233de": "/favicon.ico",
-    "d7d2e4d5ea5bceb34497c3839c6c7c1b07f2730b": "/2f1a976c9c35ffed9b7e23cf2cbf8f19.jpg",
-    "dd0a1da9fa779d9ab7980ea9cf6b1801303aa7fd": "/npm.intl.62ffc0b470803cf6ab21.chunk.js",
-    "522a639f7463e14fac634a9ab810db3a2e29d1ff": "/npm.lodash.8ef8ac3fc61e6f207a6e.chunk.js",
-    "8b928cc0203744e990c905f0c38b65968d0ce1e3": "/npm.redux-saga.79f2323a863254a4c833.chunk.js",
-    "606bdc668802534e48ef14560ced198a1772d97a": "/npm.webpack.118c1f5931a03dd939a1.chunk.js",
-    "1ca940e85ae782645fb18ec775e13e967b362493": "/4.97c56abce4bb8a4242ff.chunk.js",
-    "2e9285e7f89a7af571645c8993251abff39b05c3": "/main.65859f5e1ac5c1744a78.chunk.js",
-    "a4dbe829bf0ba3f39c0bdcd4989bad8dc87da714": "/npm.babel.cbd622b2e6a0ad546b0f.chunk.js",
-    "331c9621ba80bfb485560bced5fd1aff647c03dd": "/npm.connected-react-router.4c4f072dc44cd33b1292.chunk.js",
-    "c7bd9d7dae0a7f2c4ddfe0e90721e396f9467b0c": "/npm.intl-messageformat.ef4553732cb09ea7cdfb.chunk.js",
-    "fc2902009fbe14cdd778b117f14f672c409de8cc": "/npm.intl-relativeformat.1bebde40ba29c84dc892.chunk.js",
-    "1628afd7e3d188634c4aa0b2d27ea5e7f59a08fd": "/npm.react-app-polyfill.478cb9097f8702465774.chunk.js",
-    "d27c354c2ca913e524522a13da2fa78143a83e4c": "/npm.react-redux.97e3c68cf48d6bcfd845.chunk.js",
-    "ffcbc4415abf5234312756a9ef1b99a6827b20c6": "/runtime.b185a91ff62748618b17.js",
-    "a0191dc86f1984addfe2cc922ad895d6549b09f8": "/13.932fa265fdb6d9fb7773.chunk.js",
-    "fb05867eb203bca5cef41e7a316245aa41acd5cc": "/14.56932054d26e0796dddf.chunk.js",
-    "4bd163801c4ff8d95cd8dd140bc3fe17c5e8bb52": "/15.1f44947bff9bf82d27b3.chunk.js",
-    "92685836f306abe727791678de887b69dab75d30": "/16.8e654ad7d82140fdcf3a.chunk.js",
-    "a8701f03c671e706ea569ce8ffd0a087b13b83b1": "/"
+    "5e53ef208f3fa79a48f8374488f473c76e1233de": "/set/favicon.ico",
+    "d7d2e4d5ea5bceb34497c3839c6c7c1b07f2730b": "/set/2f1a976c9c35ffed9b7e23cf2cbf8f19.jpg",
+    "dd0a1da9fa779d9ab7980ea9cf6b1801303aa7fd": "/set/npm.intl.62ffc0b470803cf6ab21.chunk.js",
+    "522a639f7463e14fac634a9ab810db3a2e29d1ff": "/set/npm.lodash.8ef8ac3fc61e6f207a6e.chunk.js",
+    "8b928cc0203744e990c905f0c38b65968d0ce1e3": "/set/npm.redux-saga.79f2323a863254a4c833.chunk.js",
+    "606bdc668802534e48ef14560ced198a1772d97a": "/set/npm.webpack.118c1f5931a03dd939a1.chunk.js",
+    "1ca940e85ae782645fb18ec775e13e967b362493": "/set/4.97c56abce4bb8a4242ff.chunk.js",
+    "3c4ea7d1d7525bf84a5f64be4a6dc0dc3a9a79a6": "/set/main.d0f016ffefa5359cc3b3.chunk.js",
+    "a4dbe829bf0ba3f39c0bdcd4989bad8dc87da714": "/set/npm.babel.cbd622b2e6a0ad546b0f.chunk.js",
+    "331c9621ba80bfb485560bced5fd1aff647c03dd": "/set/npm.connected-react-router.4c4f072dc44cd33b1292.chunk.js",
+    "c7bd9d7dae0a7f2c4ddfe0e90721e396f9467b0c": "/set/npm.intl-messageformat.ef4553732cb09ea7cdfb.chunk.js",
+    "fc2902009fbe14cdd778b117f14f672c409de8cc": "/set/npm.intl-relativeformat.1bebde40ba29c84dc892.chunk.js",
+    "1628afd7e3d188634c4aa0b2d27ea5e7f59a08fd": "/set/npm.react-app-polyfill.478cb9097f8702465774.chunk.js",
+    "d27c354c2ca913e524522a13da2fa78143a83e4c": "/set/npm.react-redux.97e3c68cf48d6bcfd845.chunk.js",
+    "a85a0ff9639d5d86cb20a559343cb0bc9d0f0ad4": "/set/runtime.8fce9d8e3bf21d749999.js",
+    "a0191dc86f1984addfe2cc922ad895d6549b09f8": "/set/13.932fa265fdb6d9fb7773.chunk.js",
+    "fb05867eb203bca5cef41e7a316245aa41acd5cc": "/set/14.56932054d26e0796dddf.chunk.js",
+    "4bd163801c4ff8d95cd8dd140bc3fe17c5e8bb52": "/set/15.1f44947bff9bf82d27b3.chunk.js",
+    "92685836f306abe727791678de887b69dab75d30": "/set/16.8e654ad7d82140fdcf3a.chunk.js",
+    "9a6e707f5f5443e627c1bb36f88460c6b9191c57": "/set/"
   },
   "strategy": "changed",
   "responseStrategy": "cache-first",
-  "version": "9/24/2019, 3:11:51 PM",
+  "version": "9/24/2019, 3:17:48 PM",
   "name": "webpack-offline",
   "pluginVersion": "5.0.6",
   "relativePaths": false
@@ -136,7 +136,7 @@ var __wpo = {
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
+/******/ 	__webpack_require__.p = "/set/";
 /******/
 /******/
 /******/ 	// Load entry module and return exports

@@ -32,7 +32,9 @@ export default function App() {
   return (
     <AppWrapper>
       <div>Hi</div>
-        <Route exact path="/" component={HomePage} />
+      <Route exact path="/" component={HomePage} />
+      <Route exact path="/set" component={HomePage} />
+      <Route exact path="/set/" component={HomePage} />
       <GlobalStyle />
     </AppWrapper>
   );

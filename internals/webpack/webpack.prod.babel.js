@@ -84,6 +84,7 @@ module.exports = require('./webpack.base.babel')({
       inject: true,
     }),
 
+
     new CompressionPlugin({
       algorithm: 'gzip',
       test: /\.js$|\.css$|\.html$/,

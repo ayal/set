@@ -29,6 +29,7 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
+      <div>Hi</div>
         <Route exact path="/" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
       <GlobalStyle />

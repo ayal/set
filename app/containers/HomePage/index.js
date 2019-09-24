@@ -39,6 +39,8 @@ import Message from 'containers/Message';
 
 const key = 'home';
 
+console.log('hello from homepage file!');
+
 export function HomePage({
   username,
   loading,
@@ -47,6 +49,8 @@ export function HomePage({
   onSubmitForm,
   onChangeUsername,
 }) {
+  console.log('hello from homepage!');
+  
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 

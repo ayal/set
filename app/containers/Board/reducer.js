@@ -7,19 +7,9 @@
 import produce from 'immer';
 import _ from 'lodash';
 
-import { SOLVE_BOARD, SELECT_CARD } from './constants';
+import { SOLVE_BOARD, SELECT_CARD, CHECK_BOARD } from './constants';
 
-var getAllSubsets = 
-      theArray => theArray.reduce(
-        (subsets, value) => subsets.concat(
-          subsets.map(set => [value,...set])
-        ),
-        [[]]
-      );
-
-var getAllSubsetsSizeK = (arr,k)=>{
-  return getAllSubsets(arr).filter(s=>s.length === k);
-};
+import {getSets} from 'utils/general';
 
 function cartesian() {
   var r = [], arg = arguments, max = arg.length-1;
@@ -102,31 +92,12 @@ export const initialState = {
   messages:['GAME START'],
   selectedCards: {},
   allcards: newcards,
-  boardCards
+  boardCards,
+  score: 0
 };
 
+
 let solveBoard = (action, draft) => {
-  var threes = getAllSubsetsSizeK(draft.boardCards, 3);
-  let sets = threes.filter(three=>{
-    var eqs = 0;
-    var neqs = 0;
-    for (var i = 0; i < 4; i++) {
-      if (three[0][i] === three[1][i] && three[1][i] === three[2][i]) {
-	eqs++;
-      }
-      
-      if (three[0][i] !== three[1][i] && three[1][i] !== three[2][i] && three[2][i] !== three[0][i]) {
-	neqs++;
-      }
-    }
-
-    if (eqs + neqs === 4) {
-      return three;
-    }    
-  });
-
-  console.log('sets', JSON.stringify(sets));
-  
   if (Object.keys(draft.selectedCards).length === 3) {
     var threecards = Object.values(draft.selectedCards).map(x=>({number: x.number, color: x.color, fill: x.fill, shape: x.shape}));
 
@@ -170,12 +141,17 @@ let solveBoard = (action, draft) => {
 	      }
 	    });
 	    
-	    return {messages: [{message: 'YES ITS A SET!', cards: threecards}, ...draft.messages], selectedCards: {}, allcards: newcards, boardCards: newboardcards};
+	    return {messages: [{message: 'YES ITS A SET!', cards: threecards}, ...draft.messages],
+		    selectedCards: {},
+		    allcards: newcards,
+		    boardCards: newboardcards,
+		    score: draft.score + 1
+		   };
 	  } 	  
 	} 
       } 
     }
-    return {...draft, messages: ['not a set', ...draft.messages], selectedCards: {}};
+    return {...draft, messages: ['not a set', ...draft.messages], selectedCards: {}, score: draft.score - 1};
   }
 
   if (Object.keys(draft.selectedCards).filter(x=>!!draft.selectedCards[x]).length < 3) {
@@ -210,8 +186,37 @@ const boardReducer = (state = initialState, action) =>
 	    draft.messages = [...x.messages];
 	    draft.allcards = x.allcards;
 	    draft.boardCards = x.boardCards;
+	    draft.score = x.score;
             break;
+
+	  case CHECK_BOARD:
+	    var x = draft;
+	    let allcards = x.allcards;
+	    const sets = getSets(x.boardCards);
+	    
+	    let newMessages;
+	    if (sets.length) {
+	      newMessages = ['NO SETS? WRONG'];
+	      x.score = x.score - 1;
+	    }
+	    else {
+	      newMessages = ['NO SETS? TRUE, WILL DEAL'];
+	      let boardCards = x.boardCards;
+	      x.boardCards = [...boardCards,
+			      ...randomCardsOutOfDeck(allcards,3)];
+		
+	    }
+	    draft.score = x.score;
+            draft.selectedCards = x.selectedCards;
+	    draft.messages = [...newMessages, ...x.messages];
+	    draft.allcards = allcards;
+	    draft.boardCards = x.boardCards;
+            break;
+
 	  }
+	  
+	
+
 
 	});
 

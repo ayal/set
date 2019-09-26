@@ -5,6 +5,10 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { makeSelectMessages } from './selectors';
 
+import { checkBoard } from '../Board/actions';
+import {getSets} from 'utils/general';
+
+
 import Card from 'containers/Card';
 
 import _ from 'lodash';
@@ -51,9 +55,6 @@ width:150px;
 `;
 
 
-
-
-
 function Message(props) {
   let messagesdom = _.take(props.messages, 5).map((m,i)=>{
     if (m.cards) {
@@ -83,9 +84,20 @@ function Message(props) {
   });
 
   return (
-    <MessagesStyle isSelected={props.isSelected} onClick={e=>props.onToggle(e, props.index)}>
+    <MessagesStyle isSelected={props.isSelected}>
       <RealMessagesStyle isSelected={props.isSelected} >
+
+	<button onClick={()=>{
+	    let sets = getSets(props.boardCards);
+	    alert(JSON.stringify(sets));
+	  }}>get sets</button>
+
+	<button onClick={(e)=>{
+	    props.onCheckBoard(e, props);
+	  }}>no sets?</button>
+	
 	{`DECK: ${props.allcards.length}\n`}
+	{`SCORE: ${props.score}\n`}
 	{messagesdom}
       </RealMessagesStyle>
     </MessagesStyle>
@@ -94,18 +106,32 @@ function Message(props) {
 
 Message.propTypes = {
   messages:PropTypes.array,
-  allcards: PropTypes.array
+  allcards: PropTypes.array,
+  score: PropTypes.number,
+  boardCards: PropTypes.array,
 };
+
+export function mapDispatchToProps(dispatch) {
+  return {
+    onCheckBoard: (e,props) => {
+      dispatch(checkBoard(props));
+    },
+    dispatch,
+  };
+}
+
 
 const mapStateToProps = createSelector(
   makeSelectMessages(),
-  ({messages, allcards}) => {
+  ({messages, allcards, boardCards, score}) => {
     return ({
       messages,
-      allcards
+      allcards,
+      score,
+      boardCards
   })},
 );
 
-const withConnect = connect(mapStateToProps);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
 export default withConnect(Message);

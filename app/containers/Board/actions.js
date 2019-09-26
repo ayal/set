@@ -4,7 +4,7 @@
  *
  */
 
-import { SELECT_CARD, SOLVE_BOARD } from './constants';
+import { SELECT_CARD, SOLVE_BOARD, CHECK_BOARD } from './constants';
 
 export function selectCard(cardprops) {
 
@@ -18,6 +18,14 @@ export function selectCard(cardprops) {
 export function solveBoard(cardprops) {
   return {
     type: SOLVE_BOARD,
+    cardprops
+  };
+}
+
+
+export function checkBoard(cardprops) {
+  return {
+    type: CHECK_BOARD,
     cardprops
   };
 }

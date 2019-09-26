@@ -31,7 +31,6 @@ export default function App() {
   
   return (
     <AppWrapper>
-      <div>Hello</div>
       <Switch>
 	<Route exact path="/" component={HomePage} />
 	<Route component={HomePage} />

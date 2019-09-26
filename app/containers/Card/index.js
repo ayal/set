@@ -96,7 +96,7 @@ function Card(props) {
   const ShapeComponent = components[Shape];
   
   return (
-    <CardStyle isSelected={props.isSelected} onClick={e=>props.onToggle(e, {...props})}>
+    <CardStyle isSelected={props.isSelected} onClick={e=>props.onToggle && props.onToggle(e, {...props})}>
       <RealCardStyle ref={ref} isSelected={props.isSelected} dims={thedims} >
 	<ShapeComponent {...newprops} />
       </RealCardStyle>

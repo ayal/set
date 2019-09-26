@@ -16,7 +16,7 @@ const makeSelectMessages = () =>
   createSelector(
     selectMessages,
     boardState => {
-      return {messages: boardState.messages, allcards: boardState.allcards};
+      return {...boardState};
     },
   );
 

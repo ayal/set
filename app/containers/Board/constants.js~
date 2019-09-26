@@ -4,4 +4,5 @@
  *
  */
 
-export const SELECT_CARD = 'app/LanguageToggle/SELECT_CARD';
+export const SELECT_CARD = 'app/Board/SELECT_CARD';
+export const SOLVE_BOARD = 'app/Board/SOLVE_BOARD';

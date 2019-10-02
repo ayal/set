@@ -151,7 +151,7 @@ let solveBoard = (action, draft) => {
 	} 
       } 
     }
-    return {...draft, messages: ['not a set', ...draft.messages], selectedCards: {}, score: draft.score - 1};
+    return {...draft, messages: [{message: 'not a set', cards: threecards}, ...draft.messages], selectedCards: {}, score: draft.score - 1};
   }
 
   if (Object.keys(draft.selectedCards).filter(x=>!!draft.selectedCards[x]).length < 3) {

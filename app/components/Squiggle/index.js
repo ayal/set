@@ -52,7 +52,7 @@ function Squiggle(props) {
     let rw = sqw * scale;
 
     let centery = props.pdims.height / 2 - rh / 2 - sqy*scale;
-    let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw + 5) - sqx*scale;
+    let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw + 5*scale) - sqx*scale;
 
     
  centerx && centery && rects.push(

@@ -56,8 +56,6 @@ function Diamond(props) {
     
     centerx && centery && diamonds.push(
       <polygon key={`ri${i}`}
-	       x={centerx}
-	       y={centery}
 	       points="0,25, 50,0, 100,25, 50,50"
 	       stroke={props.color} fill={fill} strokeWidth="3"
 	       transform={`rotate(90) translate(${centery},${centerx}) scale(${scale})`}/>

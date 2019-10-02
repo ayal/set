@@ -15,7 +15,7 @@ import _ from 'lodash';
 
 import { useState, useEffect, useRef } from 'react';
 
-const MessagesStyle = styled.h2`
+const MessagesStyle = styled.div`
 width:100%;
 display:flex;
 text-align:center;
@@ -42,8 +42,37 @@ width:100%;
 display:flex;
 flex-direction:column;
 align-items:center;
+border-bottom:1px solid black;
+min-height:55px;
 flex:1;
-border-bottom:1px solid #eee;
+justify-content:center;
+padding:5px;
+> * {
+display:flex;
+flex:1;
+}
+`;
+
+const Dashboard = styled.div`
+background:#555;
+font-size:13px;
+color:white;
+width:100%;
+flex:1;
+flex-direction:row;
+display:flex;
+border-bottom:1px solid black;
+margin-bottom:10px;
+padding:20px;
+align-items:baseline;
+> * {
+flex:1;
+}
+
+> button {
+height:25px;
+margin:1px;
+}
 
 `;
 
@@ -86,19 +115,20 @@ function Message(props) {
   return (
     <MessagesStyle isSelected={props.isSelected}>
       <RealMessagesStyle isSelected={props.isSelected} >
+	<Dashboard>
+	  <button onClick={()=>{
+	      let sets = getSets(props.boardCards);
+	      alert(JSON.stringify(sets));
+	    }}>get sets</button>
 
-	<button onClick={()=>{
-	    let sets = getSets(props.boardCards);
-	    alert(JSON.stringify(sets));
-	  }}>get sets</button>
-
-	<button onClick={(e)=>{
-	    props.onCheckBoard(e, props);
-	  }}>no sets?</button>
-	
-	{`DECK: ${props.allcards.length}\n`}
-	{`SCORE: ${props.score}\n`}
-	{messagesdom}
+	  <button onClick={(e)=>{
+	      props.onCheckBoard(e, props);
+	    }}>no sets?</button>
+	  
+	  <div>{`DECK: ${props.allcards.length}\n`}</div>
+	  <div>{`SCORE: ${props.score}\n`}</div>
+	</Dashboard>
+	{messagesdom}	
       </RealMessagesStyle>
     </MessagesStyle>
   );

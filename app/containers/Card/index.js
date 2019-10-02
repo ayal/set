@@ -65,7 +65,8 @@ const RealCardStyle = styled.div`
   position: relative;
   border: 1px solid black;
   border-radius:5px;
-  border-color: ${props => props.isSelected ? "palevioletred" : "black"};
+  border-color: black;
+  box-shadow: ${props => props.isSelected ? "0px 0px 0px  3px red;" : "none"};
   height:${props => wtoh(props.dims.width)}px;
 `;
 

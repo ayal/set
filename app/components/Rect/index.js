@@ -38,28 +38,39 @@ function Rect(props) {
     fill = `url(#horizontal-stripe-${theuuid})`;
   }
 
+  
+  const sqw = 40;
+  const sqh = 80;
+  const sqx = 0;
+  const sqy = 0;
+
+
+  let scale = props.pdims.width / 200;
+  
   for (let i = 0; i < props.number; i++) {
-    let scale = props.pdims.width / 200;
-    
-    let rh = props.pdims.height * 0.6;
-    let rw = props.pdims.width * 0.2;
-    
-    let centery = props.pdims.height / 2 - rh / 2;
-    let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw + 10);
+
+
+    let rh = sqh * scale;
+    let rw = sqw * scale;
+
+    let centery = props.pdims.height / 2 - rh / 2 - sqy*scale;
+    let centerx = (props.pdims.width / 2) - (rw / 2) + (i - ((props.number - 1)/2)) * (rw + 10*scale) - sqx*scale;
+
     
     centerx &&  centery && rects.push(
       <rect key={`ri${i}`}
-	    x={centerx}
-	    y={centery}
-	    rx={`${20 * scale }`} ry={`${20 * scale}`} height="60%" width="20%" stroke={props.color} fill={fill} strokeWidth="1.4" />
+	    rx={`${20 * scale }`} ry={`${20 * scale}`}
+
+	    transform={`translate(${centerx},${centery})`} 
+	    height={`${rh}`} width={`${rw}`} stroke={props.color} fill={fill} strokeWidth={`${scale*2.3}`} />
     ); 
   }
   
   return (
     <RectStyle>
       <svg width="100%" height="100%">
-	<pattern id={`horizontal-stripe-${theuuid}`} patternUnits="userSpaceOnUse" width="10" height="10">
-	  <line key="l1" y1="10" y2="10" x1="0" x2="100" stroke={props.color} strokeWidth="4" />
+	<pattern id={`horizontal-stripe-${theuuid}`} patternUnits="userSpaceOnUse" width="1" height={`${9*(scale*1.5)}`}>
+	  <line key="l1" x1="0" y1="0" x2="200" y2="0" stroke={props.color} strokeWidth={`${3*scale*2}`} />
 	  </pattern>
 	{rects}
       </svg>

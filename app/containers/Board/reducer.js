@@ -89,7 +89,7 @@ let newcards = alldeck.filter(card=>{
 });
 
 export const initialState = {
-  messages:['GAME START'],
+  messages:['START'],
   selectedCards: {},
   allcards: newcards,
   boardCards,
